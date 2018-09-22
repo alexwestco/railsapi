@@ -58,4 +58,8 @@ Rails.application.configure do
   # Use an evented file watcher to asynchronously detect changes in source code,
   # routes, locales, etc. This feature depends on the listen gem.
   config.file_watcher = ActiveSupport::EventedFileUpdateChecker
+
+  # Eager load code on boot so JSONAPI-Resources resources are loaded and processed globally
+  config.eager_load = true
+  config.consider_all_requests_local = false
 end

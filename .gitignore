@@ -2,3 +2,5 @@
 .DS_Store
 tmp/cache/*
 log/development.log
+*.pid
+tmp/restart.txt

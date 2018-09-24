@@ -17,7 +17,7 @@ ActiveRecord::Schema.define(version: 2018_09_22_103957) do
 
   create_table "contents", force: :cascade do |t|
     t.integer "webpage_id"
-    t.string "content_type"
+    t.string "wp_content_type"
     t.text "data"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

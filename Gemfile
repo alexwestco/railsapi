@@ -55,3 +55,6 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 # JSON API
 gem 'jsonapi-resources'
+
+# Web Scrapping
+gem 'nokogiri'

@@ -123,11 +123,9 @@ The JSON response will look something like this
 
 ![alt text](https://i.imgur.com/oceizHr.jpg)
 
-### Content type: ['included'][0] --> ['attributes'] --> ['wp-content-type']
-(eg. 'a')
+### Content type: ['included'][0] --> ['attributes'] --> ['wp-content-type'] ('a')
 
-### Content data: ['included'][0] --> ['attributes'] --> ['data']
-(eg. '/')
+### Content data: ['included'][0] --> ['attributes'] --> ['data'] ('/')
 
 ![alt text](https://i.imgur.com/V70ZBhg.jpg)
 

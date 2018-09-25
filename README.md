@@ -26,42 +26,35 @@ ruby 'your_local_version'
 ### Installing
 
 
-```
 Clone this repository
-```
+
 
 ### Setup the database
 
 navigate to the cloned repo in your terminal
 
 ```
-'rake db:create'
+rake db:create
 ```
 
 ```
-'rake db:create'
+rake db:migrate
 ```
 
 ### Run the server
 
 ```
-'rails s'
+rails s
 ```
 
 Now, if everything went perfectly you should be able to communicate with the server on port 3000
 
 
-## Don't want to install it locally?
-
-### Use it in production
-
-Just follow the instructions below in the 'Using the API' section and substitute 'http://localhost:3000/...' with 'https://railsapi.herokuapp.com/...'
-
 ## Using the API
 
 There are two functions for this API
 
-### 1) Get the contents of a specific url and save it's contents, eg. 'https://www.telemonetize.com'
+### Parse and save the contents of a specific url, eg. 'https://www.telemonetize.com'
 
 ```
 curl -i -H "Accept: application/vnd.api+json" -H 'Content-Type:application/vnd.api+json' -X POST -d '{"data": {"type":"webpages", "attributes":{"url":"https://www.telemonetize.com”}}}’ http://localhost:3000/webpages
@@ -91,7 +84,7 @@ end
 # response.body
 ```
 
-### 2) Get all saved urls and their contents
+### Get all saved urls and their contents
 
 ```
 curl -i -H "Accept: application/vnd.api+json" "http://localhost:3000/webpages?include=contents&fields%5Bcontents”
@@ -121,26 +114,30 @@ end
 
 ## Parsing the response
 
-### Parse the urls and get the ids of it's contents
+Parse the urls and get the ids of it's contents
+
+The JSON response will look something like this
+
+Get the urls
+
+### URL: ['data'][0] --> ['attributes'] --> ['url']
+('https://www.telemonetize.com')
 
 ![alt text](https://i.imgur.com/oceizHr.jpg)
 
-URL: ['data'][index] --> ['attributes'] --> ['url']
-(eg. 'https://www.example.com')
-
-Content ID: ['data'][index] --> ['relationships'] --> ['contents'] --> ['data'][index] --> ['id']
-(eg. '58')
+###Content ID: ['data'][0] --> ['relationships'] --> ['contents'] --> ['data'][0] --> ['id']
+('58')
 
 
-### Get the contents
+Get the contents
 
 ![alt text](https://i.imgur.com/V70ZBhg.jpg)
 
-Content type: ['included'][index] --> ['attributes'] --> ['wp-content-type']
-(eg. 'h1')
+###Content type: ['included'][0] --> ['attributes'] --> ['wp-content-type']
+(eg. 'a')
 
-Content data: ['included'][index] --> ['attributes'] --> ['data']
-(eg. 'Welcome the my website')
+###Content data: ['included'][0] --> ['attributes'] --> ['data']
+(eg. '/')
 
 ## Built With
 

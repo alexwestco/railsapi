@@ -1,5 +1,5 @@
 class ContentResource < JSONAPI::Resource
-  attributes :content_type, :data
+  attributes :wp_content_type, :data
   has_one :webpage
 
   filter :webpage

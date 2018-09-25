@@ -117,15 +117,15 @@ end
 The JSON response will look something like this
 
 
-### URL: ['data'][0] --> ['attributes'] --> ['url'] ('https://www.telemonetize.com')
+### URL: ['data'][0] --> ['attributes'] --> ['url'] eg('https://www.telemonetize.com')
 
-### Content ID: ['data'][0] --> ['relationships'] --> ['contents'] --> ['data'][0] --> ['id'] ('58')
+### Content ID: ['data'][0] --> ['relationships'] --> ['contents'] --> ['data'][0] --> ['id'] eg('58')
 
 ![alt text](https://i.imgur.com/oceizHr.jpg)
 
-### Content type: ['included'][0] --> ['attributes'] --> ['wp-content-type'] ('a')
+### Content type: ['included'][0] --> ['attributes'] --> ['wp-content-type'] eg('a')
 
-### Content data: ['included'][0] --> ['attributes'] --> ['data'] ('/')
+### Content data: ['included'][0] --> ['attributes'] --> ['data'] eg('/')
 
 ![alt text](https://i.imgur.com/V70ZBhg.jpg)
 

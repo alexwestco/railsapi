@@ -116,27 +116,52 @@ end
 
 The JSON response will look something like this
 
-
-### URL: ['data'][0] --> ['attributes'] --> ['url']
-
-eg('https://www.telemonetize.com')
-
-### Content ID: ['data'][0] --> ['relationships'] --> ['contents'] --> ['data'][0] --> ['id']
-
-eg('58')
-
 ![alt text](https://i.imgur.com/oceizHr.jpg)
 
-### Content type: ['included'][0] --> ['attributes'] --> ['wp-content-type']
-
-eg('a')
-
-### Content data: ['included'][0] --> ['attributes'] --> ['data']
-
-eg('/')
 
 ![alt text](https://i.imgur.com/V70ZBhg.jpg)
 
+### Example of parsing the urls and their contents
+
+```
+require 'net/http'
+require 'uri'
+require 'json'
+
+uri = URI.parse("http://localhost:3000/webpages?include=contents")
+request = Net::HTTP::Get.new(uri)
+request["Accept"] = "application/vnd.api+json"
+
+req_options = {
+  use_ssl: uri.scheme == "https",
+}
+
+response = Net::HTTP.start(uri.hostname, uri.port, req_options) do |http|
+  http.request(request)
+end
+
+puts response.code
+
+json = JSON.parse(response.body)
+
+json['data'].each do |data|
+	puts "\n\n\n\n\n"+data['attributes']['url']
+
+	# Get the content IDS
+	content_ids = []
+	data['relationships']['contents']['data'].each do |content|
+		content_ids.push(content['id'])
+	end
+
+	# Print the contents
+	json['included'].each do |content|
+		if content_ids.include? content['id']
+			puts '--> ' + content['attributes']['wp-content-type'].to_s + ': ' + content['attributes']['data'].to_s
+		end
+	end
+
+end
+```
 
 ## Built With
 

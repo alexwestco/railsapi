@@ -60,30 +60,6 @@ There are two functions for this API
 curl -i -H "Accept: application/vnd.api+json" -H 'Content-Type:application/vnd.api+json' -X POST -d '{"data": {"type":"webpages", "attributes":{"url":"https://www.telemonetize.com”}}}’ http://localhost:3000/webpages
 ```
 
-Or in ruby
-
-```
-require 'net/http'
-require 'uri'
-
-uri = URI.parse("http://{type:webpages,")
-request = Net::HTTP::Post.new(uri)
-request.content_type = "application/vnd.api+json"
-request["Accept"] = "application/vnd.api+json"
-request.body = "{data:"
-
-req_options = {
-  use_ssl: uri.scheme == "https",
-}
-
-response = Net::HTTP.start(uri.hostname, uri.port, req_options) do |http|
-  http.request(request)
-end
-
-# response.code
-# response.body
-```
-
 ### Get all saved urls and their contents
 
 ```

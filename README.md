@@ -1,54 +1,67 @@
-# Webpage Content API
+# WebFetcher API
 
-A simple yet powerful API to get the contents of a webpage
+A simple, yet powerful API to get the contents of a webpage (links, h1, h2, h3)
 
 ## Getting Started
 
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
+These instructions will get you a copy of the project up and running on your local machine for development and testing purposes
 
 ### Prerequisites
 
 What things you need to install the software and how to install them
 
-```
 Ruby 2.4.1 installed locally, or change the ruby line in Gemfile to your local version
+
+In Gemfile
+```
+ruby '2.4.1'
+```
+
+Change it to:
+
+```
+ruby 'your_local_version'
 ```
 
 ### Installing
-
-Simple installation
 
 
 ```
 Clone this repository
 ```
 
-Setup the database
+### Setup the database
+
+navigate to the cloned repo in your terminal
 
 ```
-navigate to the cloned repo in your terminal and run 'rake db:create' and 'rake db:migrate'
+'rake db:create'
 ```
 
-Run the server
+```
+'rake db:create'
+```
+
+### Run the server
 
 ```
-run 'rails s'
+'rails s'
 ```
 
 Now, if everything went perfectly you should be able to communicate with the server on port 3000
 
 
-### Don't want to install it locally?
+## Don't want to install it locally?
 
-# Use it in production
+### Use it in production
 
-Just follow the instruction below in the 'Using the API' section and substitute 'http://localhost:3000/...' with 'https://railsapi.herokuapp.com/...'
+Just follow the instructions below in the 'Using the API' section and substitute 'http://localhost:3000/...' with 'https://railsapi.herokuapp.com/...'
 
 ## Using the API
 
 There are two functions for this API
 
-# 1) Get the contents of a specific url and save it's contents, eg. 'https://www.telemonetize.com'
+### 1) Get the contents of a specific url and save it's contents, eg. 'https://www.telemonetize.com'
 
 ```
 curl -i -H "Accept: application/vnd.api+json" -H 'Content-Type:application/vnd.api+json' -X POST -d '{"data": {"type":"webpages", "attributes":{"url":"https://www.telemonetize.com”}}}’ http://localhost:3000/webpages
@@ -78,7 +91,7 @@ end
 # response.body
 ```
 
-# 2) Get all saved urls and their contents
+### 2) Get all saved urls and their contents
 
 ```
 curl -i -H "Accept: application/vnd.api+json" "http://localhost:3000/webpages?include=contents&fields%5Bcontents”
@@ -106,6 +119,29 @@ end
 # response.body
 ```
 
+## Parsing the response
+
+### Parse the urls and get the ids of it's contents
+
+![alt text](https://i.imgur.com/oceizHr.jpg)
+
+URL: ['data'][index] --> ['attributes'] --> ['url']
+(eg. 'https://www.example.com')
+
+Content ID: ['data'][index] --> ['relationships'] --> ['contents'] --> ['data'][index] --> ['id']
+(eg. '58')
+
+
+### Get the contents
+
+![alt text](https://i.imgur.com/V70ZBhg.jpg)
+
+Content type: ['included'][index] --> ['attributes'] --> ['wp-content-type']
+(eg. 'h1')
+
+Content data: ['included'][index] --> ['attributes'] --> ['data']
+(eg. 'Welcome the my website')
+
 ## Built With
 
 * [Ruby On Rails](https://github.com/rails/rails) - The web framework used
@@ -114,9 +150,9 @@ end
 
 ## Authors
 
-* **Alexander Sideris** - *Initial work* - (https://github.com/alexsideris)
+* **Alexander Sideris** - *Initial work* - (https://github.com/alexandersideris)
 
-See also the list of [contributors](https://github.com/alexsideris/project/contributors) who participated in this project.
+See also the list of [contributors](https://github.com/alexsideris/railsapi/contributors) who participated in this project.
 
 ## License
 

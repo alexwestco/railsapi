@@ -120,23 +120,21 @@ The JSON response will look something like this
 
 Get the urls
 
-### URL: ['data'][0] --> ['attributes'] --> ['url']
-('https://www.telemonetize.com')
+### URL: ['data'][0] --> ['attributes'] --> ['url'] ('https://www.telemonetize.com')
 
 ![alt text](https://i.imgur.com/oceizHr.jpg)
 
-###Content ID: ['data'][0] --> ['relationships'] --> ['contents'] --> ['data'][0] --> ['id']
-('58')
+### Content ID: ['data'][0] --> ['relationships'] --> ['contents'] --> ['data'][0] --> ['id'] ('58')
 
 
 Get the contents
 
 ![alt text](https://i.imgur.com/V70ZBhg.jpg)
 
-###Content type: ['included'][0] --> ['attributes'] --> ['wp-content-type']
+### Content type: ['included'][0] --> ['attributes'] --> ['wp-content-type']
 (eg. 'a')
 
-###Content data: ['included'][0] --> ['attributes'] --> ['data']
+### Content data: ['included'][0] --> ['attributes'] --> ['data']
 (eg. '/')
 
 ## Built With
